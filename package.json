@@ -41,7 +41,8 @@
     "shx": "^0.3.4",
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "release-it": "^15.0.0"
   },
   "oclif": {
     "bin": "pivtt",
@@ -59,18 +60,21 @@
     },
     "warn-if-update-available": {
       "timeoutInDays": 7,
+      "registry": "https://registry.npmjs.org",
       "message": "<%= config.name %> update available from <%= chalk.greenBright(config.version) %> to <%= chalk.greenBright(latest) %>."
     }
   },
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint . --ext .ts --config .eslintrc",
+    "generate": "oclif generate command utf8",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "yarn lint",
     "prepack": "yarn build && oclif manifest && oclif readme",
-    "release": "yarn publish",
+    "release": "release-it --disable-metrics",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "versionit": "oclif readme && git add README.md && auto-changelog -p --template=keepachangelog && git add CHANGELOG.md"
+    "readme": "oclif readme && git add README.md",
+    "changelog": "auto-changelog -p --template=keepachangelog && git add CHANGELOG.md"
   },
   "engines": {
     "node": ">=12.0.0"
