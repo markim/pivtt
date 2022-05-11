@@ -4,14 +4,7 @@ describe('utf8', () => {
   test
     .stdout()
     .command(['utf8'])
-    .it('runs hello', ctx => {
-      expect(ctx.stdout).to.contain('hello world')
-    })
-
-  test
-    .stdout()
-    .command(['utf8', '--name', 'jeff'])
-    .it('runs hello --name jeff', ctx => {
-      expect(ctx.stdout).to.contain('hello jeff')
+    .it('runs utf8', ctx => {
+      expect(ctx.stdout).to.contain('Finished converting')
     })
 })

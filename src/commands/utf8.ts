@@ -1,28 +1,41 @@
-import { Command, Flags } from '@oclif/core'
+import { Command } from '@oclif/core'
+import fs = require('fs')
+import path = require('path')
 
 export default class Utf8 extends Command {
-  static description = 'describe the command here'
+  static description = 'Convert every file in the current directory to UTF-8 encoding'
 
   static examples = [
     '<%= config.bin %> <%= command.id %>',
+    'Currently the command will only list all files in a directory recursively',
   ]
 
-  static flags = {
-    // flag with a value (-n, --name=VALUE)
-    name: Flags.string({ char: 'n', description: 'name to print' }),
-    // flag with no value (-f, --force)
-    force: Flags.boolean({ char: 'f' }),
-  }
+  static flags = {}
 
-  static args = [{ name: 'file' }]
+  static args = [{ name: 'folder', default: '.', required: false }]
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse(Utf8)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from C:\\Users\\markh\\code\\pivtt\\src\\commands\\utf8.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    //
+    //
+    const readTree = (entry: string) => {
+      fs.lstat(entry, (err: any, stat: { isDirectory: () => any }) => {
+        if (err) throw err
+        if (stat.isDirectory()) {
+          fs.readdir(entry, (err: any, files: any[]) => {
+            if (err) throw err
+            for (const file of files) {
+              readTree(path.join(entry, file))
+            }
+          })
+        } else {
+          // perform the conversion on this file here
+          this.log(entry)
+        }
+      })
     }
+
+    //
+    readTree('.')
+    this.log('Finished converting files from /pivtt/src/commands/utf8.ts')
   }
 }

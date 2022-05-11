@@ -18,14 +18,18 @@ The flow for a new release:
 
 4.) `yarn changelog`
 
-5.) `git push`
+5.) `git add .`
 
 6.) `yarn release`
 
+7.) `git add .`
 
-# Table of Contents
+8.) `git commit/push`
+
+----
+
+## Table of contents
 <!-- toc -->
-* [Table of Contents](#table-of-contents)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
@@ -36,7 +40,7 @@ $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.4 win32-x64 node-v16.15.0
+pivtt/0.0.5 linux-x64 node-v16.13.1
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
@@ -46,7 +50,8 @@ USAGE
 # Commands
 <!-- commands -->
 * [`pivtt help [COMMAND]`](#pivtt-help-command)
-* [`pivtt utf8 [FILE]`](#pivtt-utf8-file)
+* [`pivtt update [CHANNEL]`](#pivtt-update-channel)
+* [`pivtt utf8 [FOLDER]`](#pivtt-utf8-folder)
 
 ## `pivtt help [COMMAND]`
 
@@ -68,24 +73,59 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
 
-## `pivtt utf8 [FILE]`
+## `pivtt update [CHANNEL]`
 
-describe the command here
+update the pivtt CLI
 
 ```
 USAGE
-  $ pivtt utf8 [FILE] [-n <value>] [-f]
+  $ pivtt update [CHANNEL] [-a] [-v <value> | -i] [--force]
 
 FLAGS
-  -f, --force
-  -n, --name=<value>  name to print
+  -a, --available        Install a specific version.
+  -i, --interactive      Interactively select version to install. This is ignored if a channel is provided.
+  -v, --version=<value>  Install a specific version.
+  --force                Force a re-download of the requested version.
 
 DESCRIPTION
-  describe the command here
+  update the pivtt CLI
+
+EXAMPLES
+  Update to the stable channel:
+
+    $ pivtt update stable
+
+  Update to a specific version:
+
+    $ pivtt update --version 1.0.0
+
+  Interactively select version:
+
+    $ pivtt update --interactive
+
+  See available versions:
+
+    $ pivtt update --available
+```
+
+_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v3.0.0/src/commands/update.ts)_
+
+## `pivtt utf8 [FOLDER]`
+
+Convert every file in the current directory to UTF-8 encoding
+
+```
+USAGE
+  $ pivtt utf8 [FOLDER]
+
+DESCRIPTION
+  Convert every file in the current directory to UTF-8 encoding
 
 EXAMPLES
   $ pivtt utf8
+
+  Currently the command will only list all files in a directory recursively
 ```
 
-_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.4/dist/commands/utf8.ts)_
+_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.5/dist/commands/utf8.ts)_
 <!-- commandsstop -->
