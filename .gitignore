@@ -8,3 +8,4 @@ node_modules
 oclif.manifest.json
 dist
 /node_modules
+tsconfig.tsbuildinfo

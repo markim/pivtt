@@ -17,7 +17,7 @@ $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.0 win32-x64 node-v16.15.0
+pivtt/0.0.1 win32-x64 node-v16.15.0
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
@@ -103,5 +103,5 @@ EXAMPLES
   $ pivtt starting utf-8 conversion...
 ```
 
-_See code: [dist/commands/utf8/index.ts](https://github.com/markim/pivtt/blob/v0.0.0/dist/commands/utf8/index.ts)_
+_See code: [dist/commands/utf8/index.ts](https://github.com/markim/pivtt/blob/v0.0.1/dist/commands/utf8/index.ts)_
 <!-- commandsstop -->
