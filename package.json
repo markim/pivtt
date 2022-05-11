@@ -23,7 +23,8 @@
   "dependencies": {
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-warn-if-update-available": "2.0.4"
+    "@oclif/plugin-warn-if-update-available": "2.0.4",
+    "webvtt-parser": "^2.1.2"
   },
   "devDependencies": {
     "@oclif/test": "^2",
@@ -37,13 +38,13 @@
     "eslint-config-oclif-typescript": "^1.0.2",
     "globby": "^11",
     "mocha": "^9",
+    "nyc": "15.1.0",
     "oclif": "^3",
+    "release-it": "^15.0.0",
     "shx": "^0.3.4",
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.6.4",
-    "release-it": "^15.0.0",
-    "nyc": "15.1.0"
+    "typescript": "^4.6.4"
   },
   "oclif": {
     "bin": "pivtt",

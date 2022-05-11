@@ -6513,6 +6513,11 @@ webidl-conversions@^3.0.0:
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"
   integrity sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=
 
+webvtt-parser@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/webvtt-parser/-/webvtt-parser-2.1.2.tgz#daf67ad2e384d62401f701661209e467b46d6f8c"
+  integrity sha512-tsa/bBC5DksIT2F95kKSSa9S6Md5h6oIFVRC0/bSHDlaEdAViOVnt6acKEMPjMmtmHzjiHtFm7cgDkViuAynqQ==
+
 whatwg-url@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz"
