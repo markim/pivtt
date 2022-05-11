@@ -1,16 +1,13 @@
 import { CliUx, Command, Flags } from '@oclif/core'
+const { WebVTTParser } = require('webvtt-parser')
 import fs = require('fs')
 import path = require('path')
 
-export default class Utf8 extends Command {
-  static description = 'Convert every file in the current directory to UTF-8 encoding'
+export default class Parse extends Command {
+  static description = 'This command looks at a .vtt file and parses it'
 
   static examples = [
     '<%= config.bin %> <%= command.id %>',
-    `Are you ready to convert all files in: ./test/files to UTF-8? (y/n): y
-    test\\files\\badtest.vtt... done
-    Skipping test\\files\\wrongext.txt because it is not a VTT file
-    test\\files\\goodtest.vtt... done`,
   ]
 
   static flags = {
@@ -25,12 +22,11 @@ export default class Utf8 extends Command {
     }),
   }
 
-  static args = [{ name: 'fileOrFolder', default: '.', required: false }]
+  static args = [{ name: 'fileOrFolder', require: true }]
 
   public async run(): Promise<void> {
-    //
-    const { flags, args } = await this.parse(Utf8)
-    //
+    const { args, flags } = await this.parse(Parse)
+
     const readTree = (entry: string) => {
       fs.lstat(entry, (err: any, stat: { isDirectory: () => any }) => {
         if (err) throw err
@@ -44,10 +40,14 @@ export default class Utf8 extends Command {
         } else if (path.extname(entry) === '.vtt') {
           // start the spinner
           CliUx.ux.action.start(entry, 'initializing', { stdout: true })
-          // perform the conversion on this file here
+          // perform the validation on this file here
+          // assume utf-8 encoding so we can open the file and get the raw text
           //
-          const content = fs.readFileSync(entry)
-          fs.writeFileSync(entry, content, { encoding: 'utf8' }) // specify the encoding as utf8
+          const content = fs.readFileSync(entry, { encoding: 'utf-8' })
+          const parser = new WebVTTParser()
+          const tree = parser.parse(content, 'metadata')
+
+          this.log(tree.errors)
           //
           // stop the spinner
           CliUx.ux.action.stop() // shows 'starting a process... done'
@@ -64,7 +64,7 @@ export default class Utf8 extends Command {
         if (flags.force) {
           readTree(args.fileOrFolder)
         } else {
-          const response = await CliUx.ux.prompt(`Are you ready to convert all *.vtt files in: ${args.fileOrFolder} to UTF-8? (y/n)`)
+          const response = await CliUx.ux.prompt(`Are you ready to validate all .vtt files in: ${args.fileOrFolder} to UTF-8? (y/n)`)
           if (response === 'y' || response === 'Y') {
             readTree(args.fileOrFolder)
           }
@@ -74,10 +74,12 @@ export default class Utf8 extends Command {
         //
         // start the spinner
         CliUx.ux.action.start(args.fileOrFolder, 'initializing', { stdout: true })
-        // perform the conversion on this file here
+        // perform the validation on this file here
         //
-        const content = fs.readFileSync(args.fileOrFolder)
-        fs.writeFileSync(args.fileOrFolder, content, { encoding: 'utf8' }) // specify the encoding as utf8
+        const content = fs.readFileSync(args.fileOrFolder, { encoding: 'utf-8' })
+        const parser = new WebVTTParser()
+        const tree = parser.parse(content, 'metadata')
+        this.log(tree.errors)
         //
         // stop the spinner
         CliUx.ux.action.stop() // shows 'starting a process... done'

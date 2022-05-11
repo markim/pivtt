@@ -58,6 +58,9 @@
     "topics": {
       "uft8": {
         "description": "Automatically convert files to proper UTF-8 format"
+      },
+      "parse": {
+        "description": "Parse VTT files and capture errors for repairing them"
       }
     },
     "warn-if-update-available": {
@@ -69,7 +72,7 @@
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint . --ext .ts --config .eslintrc",
-    "generate": "oclif generate command utf8",
+    "generate": "oclif generate command parse",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "yarn lint",
     "prepack": "yarn build && oclif manifest && oclif readme",
