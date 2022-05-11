@@ -20,7 +20,7 @@ $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.10 win32-x64 node-v16.15.0
+pivtt/0.0.11 win32-x64 node-v16.15.0
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
@@ -30,7 +30,8 @@ USAGE
 # Commands
 <!-- commands -->
 * [`pivtt help [COMMAND]`](#pivtt-help-command)
-* [`pivtt utf8 [FOLDER]`](#pivtt-utf8-folder)
+* [`pivtt parse [FILEORFOLDER]`](#pivtt-parse-fileorfolder)
+* [`pivtt utf8 [FILEORFOLDER]`](#pivtt-utf8-fileorfolder)
 
 ## `pivtt help [COMMAND]`
 
@@ -52,13 +53,33 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
 
-## `pivtt utf8 [FOLDER]`
+## `pivtt parse [FILEORFOLDER]`
+
+This command looks at a .vtt file and parses it
+
+```
+USAGE
+  $ pivtt parse [FILEORFOLDER] [-f]
+
+FLAGS
+  -f, --force
+
+DESCRIPTION
+  This command looks at a .vtt file and parses it
+
+EXAMPLES
+  $ pivtt parse
+```
+
+_See code: [dist/commands/parse.ts](https://github.com/markim/pivtt/blob/v0.0.11/dist/commands/parse.ts)_
+
+## `pivtt utf8 [FILEORFOLDER]`
 
 Convert every file in the current directory to UTF-8 encoding
 
 ```
 USAGE
-  $ pivtt utf8 [FOLDER] [-f]
+  $ pivtt utf8 [FILEORFOLDER] [-f]
 
 FLAGS
   -f, --force
@@ -75,5 +96,5 @@ EXAMPLES
       test\helpers\init.js... done
 ```
 
-_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.10/dist/commands/utf8.ts)_
+_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.11/dist/commands/utf8.ts)_
 <!-- commandsstop -->
