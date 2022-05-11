@@ -58,7 +58,10 @@ Convert every file in the current directory to UTF-8 encoding
 
 ```
 USAGE
-  $ pivtt utf8 [FOLDER]
+  $ pivtt utf8 [FOLDER] [-f]
+
+FLAGS
+  -f, --force
 
 DESCRIPTION
   Convert every file in the current directory to UTF-8 encoding
