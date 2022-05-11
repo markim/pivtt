@@ -1,4 +1,4 @@
-import { Command } from '@oclif/core'
+import { CliUx, Command } from '@oclif/core'
 import fs = require('fs')
 import path = require('path')
 
@@ -7,7 +7,10 @@ export default class Utf8 extends Command {
 
   static examples = [
     '<%= config.bin %> <%= command.id %>',
-    'Currently the command will only list all files in a directory recursively',
+    `Are you ready to convert all files in: .\\test\\ to UTF-8? (y/n): y
+    test\\tsconfig.json... done
+    test\\commands\\utf8.test.ts... done
+    test\\helpers\\init.js... done`,
   ]
 
   static flags = {}
@@ -16,6 +19,7 @@ export default class Utf8 extends Command {
 
   public async run(): Promise<void> {
     //
+    const { args } = await this.parse(Utf8)
     //
     const readTree = (entry: string) => {
       fs.lstat(entry, (err: any, stat: { isDirectory: () => any }) => {
@@ -28,14 +32,32 @@ export default class Utf8 extends Command {
             }
           })
         } else {
+          // start the spinner
+          CliUx.ux.action.start(entry)
           // perform the conversion on this file here
-          this.log(entry)
+          //
+          const content = fs.readFileSync(entry)
+          fs.writeFileSync(entry, content, { encoding: 'utf8' }) // specify the encoding as utf8
+          //
+          // stop the spinner
+          CliUx.ux.action.stop() // shows 'starting a process... done'
         }
       })
     }
 
     //
-    readTree('.')
-    this.log('Finished converting files from /pivtt/src/commands/utf8.ts')
+    try {
+      const stats = fs.statSync(args.folder)
+      if (stats.isDirectory()) {
+        const response = await CliUx.ux.prompt(`Are you ready to convert all files in: ${args.folder} to UTF-8? (y/n)`)
+        if (response === 'y' || response === 'Y') {
+          readTree(args.folder)
+        }
+      } else {
+        this.log('Must provide valid directory')
+      }
+    } catch {
+      this.log('Not a valid folder')
+    }
   }
 }

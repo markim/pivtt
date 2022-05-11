@@ -8,26 +8,6 @@ pivtt is a command line tool to clean up .vtt files
 
 ----
 
-The flow for a new release:
-
-1.) Make changes to the code
-
-2.) `yarn build`
-
-3.) `yarn readme`
-
-4.) `yarn changelog`
-
-5.) `git add .`
-
-6.) `yarn release`
-
-7.) `git add .`
-
-8.) `git commit/push`
-
-----
-
 ## Table of contents
 <!-- toc -->
 * [Usage](#usage)
@@ -40,7 +20,7 @@ $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.5 linux-x64 node-v16.13.1
+pivtt/0.0.7 win32-x64 node-v16.15.0
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
@@ -50,7 +30,6 @@ USAGE
 # Commands
 <!-- commands -->
 * [`pivtt help [COMMAND]`](#pivtt-help-command)
-* [`pivtt update [CHANNEL]`](#pivtt-update-channel)
 * [`pivtt utf8 [FOLDER]`](#pivtt-utf8-folder)
 
 ## `pivtt help [COMMAND]`
@@ -73,43 +52,6 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
 
-## `pivtt update [CHANNEL]`
-
-update the pivtt CLI
-
-```
-USAGE
-  $ pivtt update [CHANNEL] [-a] [-v <value> | -i] [--force]
-
-FLAGS
-  -a, --available        Install a specific version.
-  -i, --interactive      Interactively select version to install. This is ignored if a channel is provided.
-  -v, --version=<value>  Install a specific version.
-  --force                Force a re-download of the requested version.
-
-DESCRIPTION
-  update the pivtt CLI
-
-EXAMPLES
-  Update to the stable channel:
-
-    $ pivtt update stable
-
-  Update to a specific version:
-
-    $ pivtt update --version 1.0.0
-
-  Interactively select version:
-
-    $ pivtt update --interactive
-
-  See available versions:
-
-    $ pivtt update --available
-```
-
-_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v3.0.0/src/commands/update.ts)_
-
 ## `pivtt utf8 [FOLDER]`
 
 Convert every file in the current directory to UTF-8 encoding
@@ -124,8 +66,11 @@ DESCRIPTION
 EXAMPLES
   $ pivtt utf8
 
-  Currently the command will only list all files in a directory recursively
+  Are you ready to convert all files in: .\test\ to UTF-8? (y/n): y
+      test\tsconfig.json... done
+      test\commands\utf8.test.ts... done
+      test\helpers\init.js... done
 ```
 
-_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.5/dist/commands/utf8.ts)_
+_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.7/dist/commands/utf8.ts)_
 <!-- commandsstop -->
