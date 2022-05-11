@@ -16,6 +16,10 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "@oclif/core": "^1",
     "@oclif/plugin-help": "^5",
@@ -64,7 +68,7 @@
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "yarn lint",
     "prepack": "yarn build && oclif manifest && oclif readme",
-    "release": "yarn run versionit && release-it --disable-metrics",
+    "release": "release-it --disable-metrics",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "versionit": "oclif readme && git add README.md && auto-changelog -p --template=keepachangelog && git add CHANGELOG.md"
   },
