@@ -1,0 +1,79 @@
+{
+  "name": "pivtt",
+  "version": "0.0.0",
+  "description": "vtt cleansing tool",
+  "author": "markim @markim",
+  "license": "MIT",
+  "bin": {
+    "pivtt": "./bin/run"
+  },
+  "homepage": "https://github.com/markim/pivtt",
+  "main": "dist/index.js",
+  "repository": "markim/pivtt",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^1",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-update": "3.0.0",
+    "@oclif/plugin-warn-if-update-available": "2.0.4"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2",
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.4",
+    "auto-changelog": "^2.4.0",
+    "chai": "^4.3.6",
+    "eslint": "^7.32.0",
+    "eslint-config-oclif": "^4",
+    "eslint-config-oclif-typescript": "^1.0.2",
+    "globby": "^11",
+    "mocha": "^9",
+    "oclif": "^3",
+    "release-it": "^15.0.0",
+    "shx": "^0.3.4",
+    "ts-node": "^10.2.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.4"
+  },
+  "oclif": {
+    "bin": "pivtt",
+    "dirname": "pivtt",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-update",
+      "@oclif/plugin-warn-if-update-available"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "uft8": {
+        "description": "Automatically convert files to proper UTF-8 format"
+      }
+    }
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "pack": "oclif pack --help",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "release": "yarn run versionit && release-it --disable-metrics",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "versionit": "oclif readme && git add README.md && auto-changelog -p --template=keepachangelog && git add CHANGELOG.md"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/markim/pivtt/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "types": "dist/index.d.ts"
+}
