@@ -20,7 +20,7 @@ $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.9 win32-x64 node-v16.15.0
+pivtt/0.0.10 win32-x64 node-v16.15.0
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
@@ -75,5 +75,5 @@ EXAMPLES
       test\helpers\init.js... done
 ```
 
-_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.9/dist/commands/utf8.ts)_
+_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.10/dist/commands/utf8.ts)_
 <!-- commandsstop -->
