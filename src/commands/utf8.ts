@@ -3,10 +3,10 @@ import fs = require('fs')
 import path = require('path')
 
 export default class Utf8 extends Command {
-  static description = 'Convert every file in the current directory to UTF-8 encoding'
+  static description = 'This will convert a single .vtt file, or all .vtt files in a folder to UTF-8 encoding'
 
   static examples = [
-    '<%= config.bin %> <%= command.id %>',
+    '<%= config.bin %> <%= command.id %> ./test/files',
     `Are you ready to convert all files in: ./test/files to UTF-8? (y/n): y
     test\\files\\badtest.vtt... done
     Skipping test\\files\\wrongext.txt because it is not a VTT file
@@ -22,6 +22,7 @@ export default class Utf8 extends Command {
       // The flag will be set to false if reversed. This functionality
       // is disabled by default, to enable it:
       // allowNo: true
+      hidden: true,
     }),
   }
 
@@ -85,7 +86,7 @@ export default class Utf8 extends Command {
         this.log(`Skipping ${args.fileOrFolder} because it is not a VTT file`)
       }
     } catch {
-      this.log('Not a valid folder or file path')
+      this.log('Error while converting to utf8')
     }
   }
 }

@@ -9,3 +9,4 @@ oclif.manifest.json
 dist
 /node_modules
 tsconfig.tsbuildinfo
+validation-results.txt

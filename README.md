@@ -55,45 +55,59 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.1
 
 ## `pivtt parse [FILEORFOLDER]`
 
-This command looks at a .vtt file and parses it
+This will validate a single .vtt file, or all .vtt files in a folder with the webvtt-parser library
 
 ```
 USAGE
-  $ pivtt parse [FILEORFOLDER] [-f]
+  $ pivtt parse [FILEORFOLDER] [-o]
 
 FLAGS
-  -f, --force
+  -o, --output  adding -o will output a file called validation-results.txt
 
 DESCRIPTION
-  This command looks at a .vtt file and parses it
+  This will validate a single .vtt file, or all .vtt files in a folder with the webvtt-parser library
 
 EXAMPLES
-  $ pivtt parse
+  $ pivtt parse ./test/files
+
+  []
+  test\files\goodtest.vtt... done
+  Skipping test\files\wrongext.txt because it is not a VTT file
+  [
+    {
+      message: 'Milliseconds must be given in three digits.',
+      line: 3,
+      col: 33
+    },
+    {
+      message: 'Milliseconds must be given in three digits.',
+      line: 6,
+      col: 33
+    }
+  ]
+  test\files\badtest.vtt... done
 ```
 
 _See code: [dist/commands/parse.ts](https://github.com/markim/pivtt/blob/v0.0.11/dist/commands/parse.ts)_
 
 ## `pivtt utf8 [FILEORFOLDER]`
 
-Convert every file in the current directory to UTF-8 encoding
+This will convert a single .vtt file, or all .vtt files in a folder to UTF-8 encoding
 
 ```
 USAGE
-  $ pivtt utf8 [FILEORFOLDER] [-f]
-
-FLAGS
-  -f, --force
+  $ pivtt utf8 [FILEORFOLDER]
 
 DESCRIPTION
-  Convert every file in the current directory to UTF-8 encoding
+  This will convert a single .vtt file, or all .vtt files in a folder to UTF-8 encoding
 
 EXAMPLES
-  $ pivtt utf8
+  $ pivtt utf8 ./test/files
 
-  Are you ready to convert all files in: .\test\ to UTF-8? (y/n): y
-      test\tsconfig.json... done
-      test\commands\utf8.test.ts... done
-      test\helpers\init.js... done
+  Are you ready to convert all files in: ./test/files to UTF-8? (y/n): y
+      test\files\badtest.vtt... done
+      Skipping test\files\wrongext.txt because it is not a VTT file
+      test\files\goodtest.vtt... done
 ```
 
 _See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.11/dist/commands/utf8.ts)_
