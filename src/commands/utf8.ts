@@ -68,7 +68,7 @@ export default class Utf8 extends Command {
           }
         }
       } else {
-        this.log('Must provide directory, not a file')
+        this.log('Must provide directory, not file')
       }
     } catch {
       this.log('Not a valid folder')
