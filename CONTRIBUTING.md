@@ -10,8 +10,6 @@
 
 5.) `git add .`
 
+6.) `git commit -m 'Fix: description'`
+
 6.) `yarn release`
-
-7.) `git add .`
-
-8.) `git commit/push`
