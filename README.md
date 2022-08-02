@@ -23,7 +23,7 @@ $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.12 win32-x64 node-v18.7.0
+pivtt/0.0.13 win32-x64 node-v18.7.0
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
@@ -94,7 +94,7 @@ EXAMPLES
   test\files\badtest.vtt... done
 ```
 
-_See code: [dist/commands/parse.ts](https://github.com/markim/pivtt/blob/v0.0.12/dist/commands/parse.ts)_
+_See code: [dist/commands/parse.ts](https://github.com/markim/pivtt/blob/v0.0.13/dist/commands/parse.ts)_
 
 ## `pivtt update [CHANNEL]`
 
@@ -153,5 +153,5 @@ EXAMPLES
       test\files\goodtest.vtt... done
 ```
 
-_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.12/dist/commands/utf8.ts)_
+_See code: [dist/commands/utf8.ts](https://github.com/markim/pivtt/blob/v0.0.13/dist/commands/utf8.ts)_
 <!-- commandsstop -->
