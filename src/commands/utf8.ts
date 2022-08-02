@@ -17,7 +17,7 @@ export default class Utf8 extends Command {
     // flag with no value (-f, --force)
     force: Flags.boolean({
       char: 'f',
-      default: false,                // default value if flag not passed (can be a function that returns a boolean)
+      default: false, // default value if flag not passed (can be a function that returns a boolean)
       // boolean flags may be reversed with `--no-` (in this case: `--no-force`).
       // The flag will be set to false if reversed. This functionality
       // is disabled by default, to enable it:
@@ -65,7 +65,9 @@ export default class Utf8 extends Command {
         if (flags.force) {
           readTree(args.fileOrFolder)
         } else {
-          const response = await CliUx.ux.prompt(`Are you ready to convert all *.vtt files in: ${args.fileOrFolder} to UTF-8? (y/n)`)
+          const response = await CliUx.ux.prompt(
+            `Are you ready to convert all *.vtt files in: ${args.fileOrFolder} to UTF-8? (y/n)`
+          )
           if (response === 'y' || response === 'Y') {
             readTree(args.fileOrFolder)
           }

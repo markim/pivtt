@@ -1,16 +1,8 @@
 {
-  "extends": [
-    "oclif",
-    "oclif-typescript"
-  ],
+  "extends": ["oclif", "oclif-typescript", "prettier"],
   "rules": {
-    "object-curly-spacing": [
-      "error",
-      "always"
-    ],
-    "quotes": [
-      "error"
-    ],
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error"],
     "indent": "off"
   }
 }

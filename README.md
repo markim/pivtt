@@ -1,36 +1,42 @@
-pivtt
-=================
+# pivtt
 
 [![Version](https://img.shields.io/npm/v/pivtt.svg)](https://npmjs.org/package/pivtt)
 [![License](https://img.shields.io/npm/l/pivtt.svg)](https://github.com/markim/pivtt/package.json)
 
 pivtt is a command line tool to clean up .vtt files
 
-----
+---
 
 ## Table of contents
+
 <!-- toc -->
+* [pivtt](#pivtt)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
 ```sh-session
 $ npm install -g pivtt
 $ pivtt COMMAND
 running command...
 $ pivtt (--version)
-pivtt/0.0.12 win32-x64 node-v16.15.0
+pivtt/0.0.12 win32-x64 node-v18.7.0
 $ pivtt --help [COMMAND]
 USAGE
   $ pivtt COMMAND
 ...
 ```
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
 * [`pivtt help [COMMAND]`](#pivtt-help-command)
 * [`pivtt parse [FILEORFOLDER]`](#pivtt-parse-fileorfolder)
+* [`pivtt update [CHANNEL]`](#pivtt-update-channel)
 * [`pivtt utf8 [FILEORFOLDER]`](#pivtt-utf8-fileorfolder)
 
 ## `pivtt help [COMMAND]`
@@ -89,6 +95,43 @@ EXAMPLES
 ```
 
 _See code: [dist/commands/parse.ts](https://github.com/markim/pivtt/blob/v0.0.12/dist/commands/parse.ts)_
+
+## `pivtt update [CHANNEL]`
+
+update the pivtt CLI
+
+```
+USAGE
+  $ pivtt update [CHANNEL] [-a] [-v <value> | -i] [--force]
+
+FLAGS
+  -a, --available        Install a specific version.
+  -i, --interactive      Interactively select version to install. This is ignored if a channel is provided.
+  -v, --version=<value>  Install a specific version.
+  --force                Force a re-download of the requested version.
+
+DESCRIPTION
+  update the pivtt CLI
+
+EXAMPLES
+  Update to the stable channel:
+
+    $ pivtt update stable
+
+  Update to a specific version:
+
+    $ pivtt update --version 1.0.0
+
+  Interactively select version:
+
+    $ pivtt update --interactive
+
+  See available versions:
+
+    $ pivtt update --available
+```
+
+_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v3.0.0/src/commands/update.ts)_
 
 ## `pivtt utf8 [FILEORFOLDER]`
 

@@ -1,8 +1,6 @@
 {
-    "hooks": {
-        "before:init": [
-            "yarn test"
-        ],
-        "after:bump": "yarn readme"
-    }
+  "hooks": {
+    "before:init": ["yarn test"],
+    "after:bump": "yarn readme"
+  }
 }

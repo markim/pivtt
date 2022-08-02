@@ -1,14 +1,17 @@
 import { CliUx, Command, Flags } from '@oclif/core'
+// eslint-disable-next-line unicorn/prefer-module
 const { WebVTTParser } = require('webvtt-parser')
 import fs = require('fs')
 import path = require('path')
 const outputFile = './validation-results.txt'
 
 export default class Parse extends Command {
-  static description = 'This will validate a single .vtt file, or all .vtt files in a folder with the webvtt-parser library'
+  static description =
+    'This will validate a single .vtt file, or all .vtt files in a folder with the webvtt-parser library'
 
   static examples = [
-    '<%= config.bin %> <%= command.id %> ./test/files', `
+    '<%= config.bin %> <%= command.id %> ./test/files',
+    `
 []
 test\\files\\goodtest.vtt... done
 Skipping test\\files\\wrongext.txt because it is not a VTT file
@@ -116,7 +119,9 @@ test\\files\\badtest.vtt... done`,
         if (flags.force) {
           readTree(args.fileOrFolder)
         } else {
-          const response = await CliUx.ux.prompt(`Are you ready to validate all .vtt files in: ${args.fileOrFolder} to UTF-8? (y/n)`)
+          const response = await CliUx.ux.prompt(
+            `Are you ready to validate all .vtt files in: ${args.fileOrFolder} to UTF-8? (y/n)`
+          )
           if (response === 'y' || response === 'Y') {
             readTree(args.fileOrFolder)
           }
